@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SOS Squad</title>
+ 
+    
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/signup.css" rel="stylesheet">
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="/">Home</a></li>
+            <li role="presentation"><a href="show_signup">Sign Up</a></li>
+            <li role="presentation"><a href="alerts">View Alerts</a></li>
+            <li role="presentation"><a href="show_available_supplies">Show Available Supplies</a></li>
+            <li role="presentation"><a href="active">Request Supplies</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Request Supplies</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <form action = "{{ url_for('request_result') }}" method = "POST">
+         <h3>What do you need?</h3>
+         Supply<br>
+         <input type = "text" name = "supply" /><br>
+         <input type = "submit" value = "Submit" /><br>
+      </form>
+
+      
+      </div>
+ 
+ 
+    </div>
+  </body>
+</html>
