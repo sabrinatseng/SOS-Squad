@@ -71,10 +71,10 @@ def signup():
             cur.execute("INSERT INTO SUPPLIES (NAME,PHONE,LOCATION,SUPPLY) VALUES (?,?,?,?)",(nm,ph,loc,sup))
             
             con.commit()
-            msg = "Record successfully added"
+            msg = "Successfully added! Thank you for your contribution! "
       except Exception as e:
          con.rollback()
-         msg = "error in insert operation: " + str(e)
+         msg = "Error in insert: " + str(e)
       
       finally:
          return render_template("signup.html",msg = msg)

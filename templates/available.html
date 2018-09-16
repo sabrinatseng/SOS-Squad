@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <head>
-    <title>Disaster Relief</title>
+    <title>SOS Squad</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- 
- 
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
- 
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
- 
- 
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 </head>
- 
+
 <body>
- 
+
     <div class="container">
         <div class="header">
             <nav>
@@ -34,32 +39,34 @@
          <div class="jumbotron">
             <form action = "{{ url_for('search_result') }}" method = "POST">
                  <h3>What do you need?</h3>
-                 Supply<br>
-                 <input type = "text" name = "supply" /><br>
-                 <input type = "submit" value = "Submit" /><br>
+                 <br>
+                 <div class="form-group">
+                      <input type="text" class="form-control" id="searchInput" name="supply" placeholder="e.g. boat">
+                 </div>
+                 <input class='btn btn-success' role='button' type = "submit" value = "Submit" /><br>
             </form>
         </div>
- 
-        <table border = 1>
+
+        <table class="table" border = 1>
          <thead>
-            <td>Name</td>
-            <td>Phone</td>
-            <td>Location</td>
-            <td>Supply</td>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Location</th>
+            <th>Supply</th>
          </thead>
-         
+
          {% for row in rows %}
             <tr>
                <td>{{row["name"]}}</td>
                <td>{{row["phone"]}}</td>
                <td> {{ row["location"]}}</td>
-               <td>{{row['supply']}}</td>  
+               <td>{{row['supply']}}</td>
             </tr>
          {% endfor %}
       </table>
- 
+
 
     </div>
 </body>
- 
+
 </html>

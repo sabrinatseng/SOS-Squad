@@ -2,12 +2,17 @@
 <html lang="en">
   <head>
     <title>SOS Squad</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
  
-    
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
  
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-    <link href="../static/signup.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
   </head>
  
@@ -30,19 +35,25 @@
  
       <div class="jumbotron">
         <form action = "{{ url_for('signup') }}" method = "POST">
-         <h3>Sign up to Offer Supplies</h3>
-         Name<br>
-         <input type = "text" name = "name" /></br>
+         <h3>Fill out this form to offer supplies to people in need.</h3>
+           <div class="form-group">
+              <label for="nameInput">Name</label>
+              <input type="text" class="form-control" id="nameInput" name="name" placeholder="Enter name">
+           </div>
+           <div class="form-group">
+              <label for="phoneInput">Phone Number</label>
+              <input type="text" class="form-control" id="phoneInput" name="phone" placeholder="(###)-###-####">
+           </div>
+           <div class="form-group">
+              <label for="locationInput">Location</label>
+              <input type="text" class="form-control" id="locationInput" name="location" placeholder="Enter location">
+           </div>
+           <div class="form-group">
+              <label for="supplyInput">Supply</label>
+              <input type="text" class="form-control" id="supplyInput" name="supply" placeholder="What are you supplying?">
+           </div>
          
-         Phone<br>
-         <input type="text" name = "phone" /></br>
-         
-         Location<br>
-         <input type = "text" name = "location" /><br>
-         
-         Supply<br>
-         <input type = "text" name = "supply" /><br>
-         <input type = "submit" value = "Submit" /><br>
+         <input class='btn btn-success' role='button' type = "submit" value = "Submit" /><br>
       </form>
 
       <div>
