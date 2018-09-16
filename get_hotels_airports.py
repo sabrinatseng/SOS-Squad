@@ -137,10 +137,12 @@ def find_hotels(lat, long, max_dist = None):
     
 
 #example function calls    
-local_airports = find_airports(33.7, -84.3, 200)
-find_flights = find_nearby_flights(local_airports,"SFO",departure_date = 2018-09-21)
-local_hotels = find_hotels(33.7, -84.3)
-
-print(local_airports)
-print(len(find_flights))
-print(local_hotels)
+#local_airports = find_airports(33.7, -84.3, 200)
+#find_flights = find_nearby_flights(local_airports,"SFO",departure_date = 2018-09-21)
+#local_hotels = find_hotels(33.7, -84.3)
+#
+#print(local_airports)
+#print(len(find_flights))
+#print(local_hotels)
+#test = find_nearby_flights(find_airports(34.54,-78.18), origin_airport="SFO")
+#print(test)

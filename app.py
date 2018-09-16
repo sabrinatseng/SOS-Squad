@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import requests
 import json
 import sqlite3
+import get_hotels_airports as util
 
 app = Flask(__name__)
 
@@ -162,7 +163,11 @@ def see_requests():
 
 @app.route('/get_flights', methods=['POST'])
 def get_flights():
-    
+    origin = request.form['origin']
+    lat = request.form['latitude']
+    long = request.form['longitude']
+    s = util.find_nearby_flights(util.find_airports(lat, long), origin_airport=origin)
+    return render_template('flight_results.html', data=s)
 
 if __name__ == "__main__":
     app.run()

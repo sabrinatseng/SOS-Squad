@@ -35,30 +35,12 @@
                     <li role="presentation"><a href="see_requests">View Requests</a></li>
                 </ul>
             </nav>
-            <h3 class="text-muted">Alerts</h3>
+            <h3 class="text-muted">Flights</h3>
         </div>
 
         <div class="jumbotron">
-            <h3>Real-Time Weather Alerts</h3>
-            <h4>If you would like to volunteer in person, please find an affected location in the list below and enter the coordinates into the form to find flights and hotels nearby.</h4>
-            <form action = "{{ url_for('get_flights') }}" method = "POST">
-                <div class="form-group">
-                  <label for="departureInput">Departure Airport Code</label>
-                  <input type="text" class="form-control" id="departureInput" name="origin" placeholder="e.g. LAX">
-                </div>
-                <div class="form-group">
-                  <label for="latInput">Destination Latitude</label>
-                  <input type="text" class="form-control" id="latInput" name="latitude" placeholder="e.g. 34.22">
-                </div>
-                <div class="form-group">
-                  <label for="lonInput">Destination Longitude</label>
-                  <input type="text" class="form-control" id="lonInput" name="longitude" placeholder="e.g. 34.22">
-                </div>
-                <input class='btn btn-success' role='button' type = "submit" value = "Get Flights" /><br>
-            </form>
-            <p class="lead"></p>
-        </div>
- 
+            <h3>Available Flights</h3>
+            
         <div class="jumbotron">
             <h5>{{ data | safe }}</h5>
         </div>
