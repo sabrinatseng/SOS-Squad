@@ -49,7 +49,8 @@ def alerts():
     for i in stormreports:
         if i['severity'] == 10:
             s += i['geo_name'] + ", " + i['location'] + ", " + i['state_code']
-            s += '<br>' + i['event_type'] + ': ' + i['comments'] + '<br>' + '<br>'
+            s += '<br>' + i['event_type'] + ': ' + i['comments'] 
+            s += '<br>' + "LATITUDE: " + str(i['latitude']) + ", LONGITUDE: " + str(i['longitude']) +'<br>' + '<br>'
     return render_template('alerts.html', data = s)
 
 @app.route('/show_signup')
@@ -74,7 +75,7 @@ def signup():
             msg = "Successfully added! Thank you for your contribution! "
       except Exception as e:
          con.rollback()
-         msg = "Error in insert: " + str(e)
+         msg = "Error in insert operation: " + str(e)
       
       finally:
          return render_template("signup.html",msg = msg)
@@ -138,10 +139,10 @@ def request_supplies():
             cur.execute("INSERT INTO REQUESTS (NAME,PHONE,LOCATION,ITEM) VALUES (?,?,?,?)",(nm,ph,loc,item))
             
             con.commit()
-            msg = "Record successfully added"
+            msg = "Successfully added!"
       except Exception as e:
          con.rollback()
-         msg = "error in insert operation: " + str(e)
+         msg = "Error in insert operation: " + str(e)
       
       finally:
          return render_template("request_supplies.html",msg = msg)
@@ -158,6 +159,10 @@ def see_requests():
     rows = cur.fetchall(); 
     conn.close()
     return render_template('see_requests.html', rows=rows)
+
+@app.route('/get_flights', methods=['POST'])
+def get_flights():
+    
 
 if __name__ == "__main__":
     app.run()

@@ -28,31 +28,33 @@
             <nav>
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation" ><a href="/">Home</a></li>
-                    <li role="presentation"><a href="show_signup">Sign Up</a></li>
-                    <li role="presentation"><a href="active">View Alerts</a></li>
-                    <li role="presentation"><a href="show_available_supplies">Show Available Supplies</a></li>
-                    <li role="presentation"><a href="request_supplies">Request Supplies</a></li>
+                    <li role="presentation"><a href="alerts">View Alerts</a></li>
+                    <li role="presentation"><a href="show_signup">Offer Supplies</a></li>
+                    <li role="presentation"><a href="show_available_supplies">View Available Supplies</a></li>
+                    <li role="presentation"><a href="show_requests">Request Supplies</a></li>
+                    <li role="presentation"><a href="see_requests">View Requests</a></li>
                 </ul>
             </nav>
             <h3 class="text-muted">Alerts</h3>
         </div>
 
         <div class="jumbotron">
-            <h1>Real-Time Weather Alerts</h1>
-            <form action = "{{ url_for('signup') }}" method = "POST">
+            <h3>Real-Time Weather Alerts</h3>
+            <h4>If you would like to volunteer in person, please find an affected location in the list below and enter the coordinates into the form to find flights and hotels nearby.</h4>
+            <form action = "{{ url_for('get_flights') }}" method = "POST">
                 <div class="form-group">
                   <label for="departureInput">Departure Airport Code</label>
                   <input type="text" class="form-control" id="departureInput" name="name" placeholder="e.g. LAX">
                 </div>
-                <div class="dropdown">
-                  <button class="btn btn-secondary btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Select Arrival Destination</button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+                <div class="form-group">
+                  <label for="latInput">Destination Latitude</label>
+                  <input type="text" class="form-control" id="latInput" name="latitude" placeholder="e.g. 34.22">
                 </div>
+                <div class="form-group">
+                  <label for="lonInput">Destination Longitude</label>
+                  <input type="text" class="form-control" id="lonInput" name="longitude" placeholder="e.g. 34.22">
+                </div>
+                <input class='btn btn-success' role='button' type = "submit" value = "Get Flights" /><br>
             </form>
             <p class="lead"></p>
         </div>
