@@ -80,12 +80,9 @@ def show_available_supplies():
     conn.close()
     return render_template('available.html', rows=rows)
 
-@app.route('/request_supplies')
-def request_supplies():
-    return render_template('request.html')
 
-@app.route('/request_result', methods=['POST'])
-def request_result():
+@app.route('/search_result', methods=['POST'])
+def search_result():
     requested = request.form['supply']
     conn = sqlite3.connect(db_name)
     conn.row_factory = sqlite3.Row
@@ -95,7 +92,7 @@ def request_result():
     
     rows = cur.fetchall();
     conn.close()
-    return render_template('request_result.html', rows = rows)
+    return render_template('search_result.html', rows = rows)
 
 if __name__ == "__main__":
     app.run()
