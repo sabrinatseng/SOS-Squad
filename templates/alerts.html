@@ -39,6 +39,21 @@
 
         <div class="jumbotron">
             <h1>Real-Time Weather Alerts</h1>
+            <form action = "{{ url_for('signup') }}" method = "POST">
+                <div class="form-group">
+                  <label for="departureInput">Departure Airport Code</label>
+                  <input type="text" class="form-control" id="departureInput" name="name" placeholder="e.g. LAX">
+                </div>
+                <div class="dropdown">
+                  <button class="btn btn-secondary btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Select Arrival Destination</button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+            </form>
             <p class="lead"></p>
         </div>
  
