@@ -19,7 +19,7 @@ amadeus = Client(client_id='W5UNInYUVqlyn1j7A5GPWGgI2gRovFRC',
 
 #response = amadeus.travel.analytics.air_traffic.booked.get(origin='BOS', period='2017-08')
 #print(response.data)
-def find_airports(lat, long, max_dist = None):
+def find_airports(lat, long, max_dist = None, top = True):
     """
     This function finds Amadeus-listed airports close to a disaster site
     
@@ -35,6 +35,8 @@ def find_airports(lat, long, max_dist = None):
     default_airports = amadeus.reference_data.locations.airports.get(latitude = lat,
                                                                      longitude = long)
     default_airports_data = default_airports.data
+    min_dist = 9999
+    closest_airport = ""
     airport_distances_to_site = {}
     
     for i in range(len(default_airports_data)):
@@ -43,10 +45,15 @@ def find_airports(lat, long, max_dist = None):
         airport_long = default_airports_data[i]['geoCode']['longitude']
         coordinates = (airport_lat, airport_long)
         distance = float(geodesic((coordinates),(lat,long)).miles)
+        if distance < min_dist:
+            min_dist = distance
+            closest_airport = code
         #only allow hotels less than maxDist from disaster site
         if max_dist and distance > max_dist:
             continue
         airport_distances_to_site[code] = distance
+    if top:
+        return {closest_airport: min_dist}
     return airport_distances_to_site
 
 def find_nearby_flights(airport_distances_dict, origin_airport="BOS",
@@ -78,15 +85,17 @@ def find_nearby_flights(airport_distances_dict, origin_airport="BOS",
                 flight_string += flight_segments[j]['flightSegment']['carrierCode']
                 flight_string += " "
                 flight_string += flight_segments[j]['flightSegment']['number']
-                flight_string += " departing from"
+                flight_string += " departing from "
                 flight_string += flight_segments[j]['flightSegment']['departure']['iataCode']
                 flight_string += " at "
                 flight_string += flight_segments[j]['flightSegment']['departure']['at']
                 flight_string += " to "
                 flight_string += flight_segments[j]['flightSegment']['arrival']['iataCode']
-                flight_string += ", "
+                flight_string += ", <br>"
             list_flights.append(flight_string)
-    return list_flights
+    if len(list_flights) < 5:
+        return list_flights
+    return list_flights[0:5]
                 
 
 def find_hotels(lat, long, max_dist = None):
