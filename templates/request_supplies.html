@@ -25,11 +25,11 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" ><a href="/">Home</a></li>
-            <li role="presentation"><a href="show_signup">Sign Up</a></li>
             <li role="presentation"><a href="alerts">View Alerts</a></li>
-            <li role="presentation"><a href="show_available_supplies">Show Available Supplies</a></li>
-            <li role="presentation"><a href="active">Request Supplies</a></li>
-            <li role="presentation"><a href="see_requests">Show Requests</a></li>
+            <li role="presentation"><a href="show_signup">Offer Supplies</a></li>
+            <li role="presentation"><a href="show_available_supplies">View Available Supplies</a></li>
+            <li role="presentation"><a href="show_requests">Request Supplies</a></li>
+            <li role="presentation"><a href="see_requests">View Requests</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">Request Supplies</h3>
@@ -37,20 +37,26 @@
  
       <div class="jumbotron">
         <form action = "{{ url_for('request_supplies') }}" method = "POST">
-         <h3>Request Supplies</h3>
-         Name<br>
-         <input type = "text" name = "name" /></br>
+         <h3>Fill out this form to request supplies.</h3>
+         <div class="form-group">
+              <label for="nameInput">Name</label>
+              <input type="text" class="form-control" id="nameInput" name="name" placeholder="Enter name">
+         </div>
+         <div class="form-group">
+              <label for="phoneInput">Phone Number</label>
+              <input type="text" class="form-control" id="phoneInput" name="phone" placeholder="(###)-###-####">
+         </div>
+         <div class="form-group">
+              <label for="locationInput">Location</label>
+              <input type="text" class="form-control" id="locationInput" name="location" placeholder="Enter location">
+         </div>
+         <div class="form-group">
+              <label for="itemInput">Item</label>
+              <input type="text" class="form-control" id="itemInput" name="item" placeholder="What are you requesting?">
+           </div>
          
-         Phone<br>
-         <input type="text" name = "phone" /></br>
-         
-         Location<br>
-         <input type = "text" name = "location" /><br>
-         
-         Item<br>
-         <input type = "text" name = "item" /><br>
-         <input type = "submit" value = "Submit" /><br>
-      </form>
+          <input class='btn btn-success' role='button' type = "submit" value = "Submit" /><br>      
+        </form>
 
       <div>
         {{ msg }}

@@ -28,29 +28,33 @@
             <nav>
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation" ><a href="/">Home</a></li>
-                    <li role="presentation"><a href="show_signup">Sign Up</a></li>
                     <li role="presentation"><a href="alerts">View Alerts</a></li>
-                    <li role="presentation"><a href="show_available_supplies">Show Available Supplies</a></li>
+                    <li role="presentation"><a href="show_signup">Offer Supplies</a></li>
+                    <li role="presentation"><a href="show_available_supplies">View Available Supplies</a></li>
                     <li role="presentation"><a href="show_requests">Request Supplies</a></li>
-                    <li role="presentation"><a href="active">Show Requests</a></li>
+                    <li role="presentation"><a href="see_requests">View Requests</a></li>
+                </ul>
+            </nav>
             <h3 class="text-muted">Supplies Requested</h3>
         </div>
 
          <div class="jumbotron">
             <form action = "{{ url_for('search_result2') }}" method = "POST">
                  <h3>What can you lend?</h3>
-                 Item<br>
-                 <input type = "text" name = "item" /><br>
-                 <input type = "submit" value = "Submit" /><br>
+                 <br>
+                 <div class="form-group">
+                      <input type="text" class="form-control" id="searchInput" name="item" placeholder="e.g. boat">
+                 </div>
+                 <input class='btn btn-success' role='button' type = "submit" value = "Submit" /><br>
             </form>
         </div>
  
-        <table border = 1>
+        <table class="table" border = 1>
          <thead>
-            <td>Name</td>
-            <td>Phone</td>
-            <td>Location</td>
-            <td>Item</td>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Location</th>
+            <th>Item</th>
          </thead>
          
          {% for row in rows %}
