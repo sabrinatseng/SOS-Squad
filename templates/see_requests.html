@@ -25,17 +25,17 @@
                     <li role="presentation" ><a href="/">Home</a></li>
                     <li role="presentation"><a href="show_signup">Sign Up</a></li>
                     <li role="presentation"><a href="alerts">View Alerts</a></li>
-                    <li role="presentation"><a href="active">Show Available Supplies</a></li>
+                    <li role="presentation"><a href="show_available_supplies">Show Available Supplies</a></li>
                     <li role="presentation"><a href="show_requests">Request Supplies</a></li>
-                    <li role="presentation"><a href="see_requests">Show Requests</a></li>
-            <h3 class="text-muted">Available Supplies</h3>
+                    <li role="presentation"><a href="active">Show Requests</a></li>
+            <h3 class="text-muted">Supplies Requested</h3>
         </div>
 
          <div class="jumbotron">
-            <form action = "{{ url_for('search_result') }}" method = "POST">
-                 <h3>What do you need?</h3>
-                 Supply<br>
-                 <input type = "text" name = "supply" /><br>
+            <form action = "{{ url_for('search_result2') }}" method = "POST">
+                 <h3>What can you lend?</h3>
+                 Item<br>
+                 <input type = "text" name = "item" /><br>
                  <input type = "submit" value = "Submit" /><br>
             </form>
         </div>
@@ -45,7 +45,7 @@
             <td>Name</td>
             <td>Phone</td>
             <td>Location</td>
-            <td>Supply</td>
+            <td>Item</td>
          </thead>
          
          {% for row in rows %}
@@ -53,7 +53,7 @@
                <td>{{row["name"]}}</td>
                <td>{{row["phone"]}}</td>
                <td> {{ row["location"]}}</td>
-               <td>{{row['supply']}}</td>  
+               <td>{{row['item']}}</td>  
             </tr>
          {% endfor %}
       </table>

@@ -22,14 +22,33 @@
             <li role="presentation"><a href="alerts">View Alerts</a></li>
             <li role="presentation"><a href="show_available_supplies">Show Available Supplies</a></li>
             <li role="presentation"><a href="active">Request Supplies</a></li>
+            <li role="presentation"><a href="see_requests">Show Requests</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">Request Supplies</h3>
       </div>
  
+      <div class="jumbotron">
+        <form action = "{{ url_for('request_supplies') }}" method = "POST">
+         <h3>Request Supplies</h3>
+         Name<br>
+         <input type = "text" name = "name" /></br>
+         
+         Phone<br>
+         <input type="text" name = "phone" /></br>
+         
+         Location<br>
+         <input type = "text" name = "location" /><br>
+         
+         Item<br>
+         <input type = "text" name = "item" /><br>
+         <input type = "submit" value = "Submit" /><br>
+      </form>
 
-      
-      
+      <div>
+        {{ msg }}
+      </div>
+      </div>
  
  
     </div>

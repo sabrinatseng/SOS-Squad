@@ -17,6 +17,18 @@ conn.execute('''CREATE TABLE IF NOT EXISTS SUPPLIES
 conn.commit()
 conn.close()
 
+db2_name = 'Requests.db'
+
+conn2 = sqlite3.connect(db2_name)
+conn2.execute('''CREATE TABLE IF NOT EXISTS REQUESTS
+         (NAME TEXT NOT NULL,
+         PHONE TEXT NOT NULL,
+         LOCATION TEXT NOT NULL,
+         ITEM TEXT NOT NULL);''')
+             
+conn2.commit()
+conn2.close()
+
 @app.route("/")
 def main():
     return render_template('index.html')
@@ -93,6 +105,59 @@ def search_result():
     rows = cur.fetchall();
     conn.close()
     return render_template('search_result.html', rows = rows)
+
+@app.route('/search_result2', methods=['POST'])
+def search_result2():
+    requested = request.form['item']
+    conn = sqlite3.connect(db2_name)
+    conn.row_factory = sqlite3.Row
+    
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM REQUESTS WHERE ITEM=? ORDER BY LOCATION", (requested,))
+    
+    rows = cur.fetchall();
+    conn.close()
+    return render_template('search_result2.html', rows = rows)
+
+@app.route('/show_requests')
+def show_requests():
+    return render_template('request_supplies.html')
+
+@app.route('/request_supplies', methods=['POST'])
+def request_supplies():
+    # read the posted values from the UI
+    if request.method == 'POST':
+      try:
+         nm = request.form['name']
+         ph = request.form['phone']
+         loc = request.form['location']
+         item = request.form['item']
+         
+         with sqlite3.connect(db2_name) as con:
+            cur = con.cursor()
+            cur.execute("INSERT INTO REQUESTS (NAME,PHONE,LOCATION,ITEM) VALUES (?,?,?,?)",(nm,ph,loc,item))
+            
+            con.commit()
+            msg = "Record successfully added"
+      except Exception as e:
+         con.rollback()
+         msg = "error in insert operation: " + str(e)
+      
+      finally:
+         return render_template("request_supplies.html",msg = msg)
+         con.close()
+    
+@app.route('/see_requests')
+def see_requests():
+    conn = sqlite3.connect(db2_name)
+    conn.row_factory = sqlite3.Row
+    
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM REQUESTS")
+   
+    rows = cur.fetchall(); 
+    conn.close()
+    return render_template('see_requests.html', rows=rows)
 
 if __name__ == "__main__":
     app.run()
